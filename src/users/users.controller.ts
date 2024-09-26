@@ -15,15 +15,13 @@ export class UsersController {
     await this.usersService.create(request);
   }
 
-  @Get()
-  @UseGuards(JwtAuthGuard)
+  @Get('all')
   async getUsers(@CurrentUser() user: User) {
     return this.usersService.getUsers();
   }
+
   @Get('me')
-  @UseGuards(JwtAuthGuard)
   async getUser(@CurrentUser() user: User) {
-    let c = 'hello';
     return user || {};
   }
 }
